@@ -1,0 +1,49 @@
+stages:
+  - backup
+  - deploy
+  - clean
+
+backup_job:
+  stage: backup
+  script:
+    - mv -f /var/www/html/catalogo_bk /var/www/html/catalogo_bk_old
+    - mv -f /var/www/html/catalogo /var/www/html/catalogo_bk
+  allow_failure : true
+  tags:
+    - dev_catalogo
+  only :
+    - dev
+deploy_job:
+  stage: deploy
+  script:
+
+    - sed -i -e 's;\passs\=\"[a-zA-Z0-9.]\+\";\passs\=\"123qwe123\";g' panelcatalogo/inc/config.php
+    - cp -rf ../catalogo /var/www/html/catalogo
+    - cp -rf /var/www/html/catalogo_bk/img /var/www/html/catalogo/.
+    - cp -rf /var/www/html/catalogo_bk/imgpag /var/www/html/catalogo/.
+    - chown -R www-data:www-data /var/www/html/catalogo
+  tags:
+    -  dev_catalogo
+  only:
+    - dev
+clean_job:
+  stage: clean
+  script:
+    - mv -f /var/www/html/catalogo_bk /var/www/html/catalogo
+    - chown -R www-data:www-data /var/www/html/catalogo
+    - rm -rf /var/www/html/catalogo_bk
+  tags:
+    -  dev_catalogo
+  only:
+    - dev
+  when: on_failure    
+    
+clean_always_job:
+  stage: clean
+  script:
+    - rm -rf /var/www/html/catalogo_bk_old
+  tags:
+    -  dev_catalogo
+  only:
+    - dev
+  when: on_success 
