@@ -17,7 +17,7 @@
                                 <h3 class="widget-blog-title">Tu web</h3>
                                 <span class="widget-blog-subtitle"></span>
                             </div>
-                            <p>Administra tu pagina web tu mismo facil y rapido.</p>
+                            <p>.</p>
                             <br/>
                            <p>Click aqui para ver tu web.</p>
 <?php

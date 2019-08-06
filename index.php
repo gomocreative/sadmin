@@ -11,7 +11,7 @@
     if ($base->numeroFilas() == 0) {
 
        $host= $_SERVER["HTTP_HOST"];
-    $ruta= "/catalogo/panelcatalogo/";
+    $ruta= "/proyectos/sunshine_solar/sadmin/panelcatalogo/";
     $linkk= "http://" . $host . $ruta;
 
     echo "no se han registrado Catalogos";

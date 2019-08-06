@@ -101,7 +101,7 @@
                                 <?php
 $host= $_SERVER["HTTP_HOST"];
 
-$ruta= "/catalogo/index.php?valor=";
+$ruta= "/proyectos/sunshine_solar/sadmin/index.php?valor=";
 $linkk= "http://" . $host . $ruta . $iduser;
 ?>
  <center>
